@@ -10,6 +10,7 @@
   "author": "Niall O'Higgins",
   "license": "BSD",
   "dependencies": {
-    "johnny-five": "~0.5.14"
+    "johnny-five": "~0.5.14",
+    "optimist": "~0.3.5"
   }
 }
