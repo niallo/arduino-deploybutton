@@ -8,5 +8,8 @@
   },
   "repository": "",
   "author": "Niall O'Higgins",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "johnny-five": "~0.5.14"
+  }
 }
