@@ -32,10 +32,8 @@ function startDeploy(cb) {
  sh.on('close', function(exitCode) {
    if (exitCode == 0) {
      cb(null, true)
-     console.log("deploy success!")
    } else {
      cb("deploy failed, exit code: " + exitCode, true)
-     console.log("deploy failed!")
    }
  })
 
@@ -53,13 +51,9 @@ board.on("ready", function() {
   var redLed = new five.Led(13)
   var greenLed = new five.Led(12)
   var button = new five.Button(8)
+  var bumper = new five.Button(7);
 
-  board.repl.inject({
-    button: button
-  })
-
-  // Start deploy when button is released
-  button.on("up", function() {
+  function go() {
     redLed.strobe()
     greenLed.stop().off()
     startDeploy(function(err) {
@@ -73,9 +67,19 @@ board.on("ready", function() {
       console.log("deploy success!")
       redLed.stop().off()
       greenLed.on()
-
-
     })
+
+  }
+
+
+  // Start deploy when bumper is hit
+  bumper.on('hit', function() {
+    go()
+  })
+
+  // Start deploy when button is released
+  button.on("up", function() {
+    go()
   })
 
 })
