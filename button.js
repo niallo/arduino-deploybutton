@@ -52,11 +52,19 @@ board.on("ready", function() {
   var greenLed = new five.Led(12)
   var button = new five.Button(8)
   var bumper = new five.Button(7);
+  var inProgress = false
 
   function go() {
+    if (inProgress) {
+      console.log("deploy already in progress")
+      return
+    }
+
+    inProgress = true
     redLed.strobe()
     greenLed.stop().off()
     startDeploy(function(err) {
+      inProgress = false
       if (err) {
         console.log("deploy failed!")
         redLed.stop()
