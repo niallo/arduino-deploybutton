@@ -7,23 +7,10 @@ var five = require("johnny-five")
 var spawn = require('child_process').spawn
 var board = new five.Board()
 
-var DELAY_OFFSET = 11
-var BEEP_PIN = 12
-
 var dir = argv.d
 
 function startDeploy(cb) {
   console.log("starting deploy")
-  // Emulate a 10 second long, unsuccessful deploy
-  /*
-  setTimeout(function() {
-    cb("deploy failed!", null)
-  }, 10000)
-  // Emulate a 10 second long, unsuccessful deploy
-  setTimeout(function() {
-    cb(null, true)
-  }, 10000)
-  */
 
  var sh = spawn("git", ["push", "heroku", "master"], {cwd:dir})
  sh.stdout.setEncoding('utf8')
