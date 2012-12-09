@@ -38,7 +38,7 @@ board.on("ready", function() {
   var redLed = new five.Led(13)
   var greenLed = new five.Led(12)
   var button = new five.Button(8)
-  var bumper = new five.Button(7);
+  var bumper = new five.Button(7)
   var inProgress = false
 
   function go() {
